@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.Win32;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,13 +16,14 @@ namespace WPF_Haltestellen_MVVM_3Tiers
         public ViewModel(ICSVHelper csvHelper)
         {
             _csvHelper = csvHelper;
-            LoadData("C:\\Users\\marc1\\source\\repos\\WPF_Haltestellen_MVVM_3Tiers\\WPF_Haltestellen_MVVM_3Tiers\\HaltestellenDB.csv");
+            LoadData("C:\\Users\\MWB\\Source\\Repos\\GidJoe\\WPF_Haltestellen_MVVM_3Tiers\\WPF_Haltestellen_MVVM_3Tiers\\HaltestellenDB.csv");
         }
 
         public void LoadData(string csvFilePath)
         {
             Haltestellen = _csvHelper.GetAllStations(csvFilePath);
         }
+
 
 
 

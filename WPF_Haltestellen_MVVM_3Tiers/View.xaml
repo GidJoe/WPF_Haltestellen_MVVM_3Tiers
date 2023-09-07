@@ -4,7 +4,24 @@
         Title="Haltestellen List" Height="583" Width="1122">
 
     <Grid>
-        <ListView Name="lv" GridViewColumnHeader.Click="lv_clickOnHeader" ItemsSource="{Binding Haltestellen}">
+        <Menu VerticalAlignment="Top" Height="23">
+            <MenuItem Header="Datei">
+                <MenuItem Header="Download CSV" Click="MenuItem_ClickOnDLNewCSV" />
+                <MenuItem Header="Exit" Click="MenuItem_ClickOnExit" />
+            </MenuItem>
+            <MenuItem Header="Info">
+                <MenuItem Header="Zeige Infos"/>
+            </MenuItem>
+        </Menu>
+        <ListView Name="lv" GridViewColumnHeader.Click="lv_clickOnHeader" ItemsSource="{Binding Haltestellen}" Margin="2,25,0,0">
+
+            <!-- Adding VirtualizingStackPanel -->
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="EVA_NR" DisplayMemberBinding="{Binding EVA_NR}" Width="100"/>

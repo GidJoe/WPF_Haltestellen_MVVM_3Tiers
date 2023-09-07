@@ -1,0 +1,12 @@
+﻿<Window x:Class="WPF_Haltestellen_MVVM_3Tiers.DownloadProgress" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Downloading..." Height="200" Width="300">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Name="fileNameText" Text="Downloading:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+            <ProgressBar Name="downloadProgress" Height="20" Width="250" Margin="0,10,0,10" />
+            <TextBlock Name="percentageText" Text="0%" HorizontalAlignment="Center" Margin="0,10,0,10" />
+            <Button Content="Cancel" Click="OnCancelButtonClick" Width="100" HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -3,8 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace WPF_Haltestellen_MVVM_3Tiers
-{
+namespace WPF_Haltestellen_MVVM_3Tiers;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -12,6 +12,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
     {
         private GridViewColumnHeader _lastHeaderClicked = null;
         private ListSortDirection _lastDirection = ListSortDirection.Ascending;
+        private DownloadHelper _downloadHelper;
         public View()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
 
         }
 
+    #region Sortierungslogik
         private void lv_clickOnHeader(object sender, RoutedEventArgs e)
         {
             ListSortDirection direction;
@@ -52,5 +54,17 @@ namespace WPF_Haltestellen_MVVM_3Tiers
             dataView.SortDescriptions.Add(sd);
             dataView.Refresh();
         }
+    #endregion
+
+    #region Button-Click-Events
+    private void MenuItem_ClickOnExit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+    #endregion
+
+    private void MenuItem_ClickOnDLNewCSV(object sender, RoutedEventArgs e)
+    {
+        //_downloadHelper.DownloadFileAsync();
     }
 }
