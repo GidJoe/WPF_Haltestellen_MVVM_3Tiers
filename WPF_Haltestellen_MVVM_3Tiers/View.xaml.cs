@@ -67,4 +67,11 @@ namespace WPF_Haltestellen_MVVM_3Tiers;
     {
         //_downloadHelper.DownloadFileAsync();
     }
+
+    private void MenuItem_ClickOnInfo(object sender, RoutedEventArgs e)
+    {
+        var infoWindow = new InfoWindow();
+        infoWindow.ShowDialog();
+    }
+    
 }

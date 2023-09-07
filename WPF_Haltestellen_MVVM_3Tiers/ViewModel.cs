@@ -1,9 +1,4 @@
-﻿using Microsoft.Win32;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+﻿using System.Collections.ObjectModel;
 
 namespace WPF_Haltestellen_MVVM_3Tiers
 {
@@ -11,7 +6,6 @@ namespace WPF_Haltestellen_MVVM_3Tiers
     {
         private readonly ICSVHelper _csvHelper;
         public ObservableCollection<Haltestellen> Haltestellen { get; set; }
-
 
         public ViewModel(ICSVHelper csvHelper)
         {
@@ -24,8 +18,6 @@ namespace WPF_Haltestellen_MVVM_3Tiers
             Haltestellen = _csvHelper.GetAllStations(csvFilePath);
         }
 
-
-
-
+        
     }
 }
