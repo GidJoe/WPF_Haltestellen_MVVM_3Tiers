@@ -5,6 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Deutsche_Bahn_AG-Logo.svg.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

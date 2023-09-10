@@ -10,9 +10,9 @@ namespace WPF_Haltestellen_MVVM_3Tiers
 {
     internal class DownloadHelper
     {
-        public async Task DownloadFileAsync(string url, string outputPath, IProgress<double> progress, CancellationToken cancellationToken)
+        public static async Task DownloadAsync(string url, string outputPath, IProgress<double> progress, CancellationToken cancellationToken)
         {
-            const int bufferSize = 8192;  // 8 KB
+            const int bufferSize = 8192; 
 
             using (var httpClient = new HttpClient())
             {
@@ -20,7 +20,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
                 {
                     response.EnsureSuccessStatusCode();
 
-                    using (var remoteStream = await response.Content.ReadAsStreamAsync())
+                    using (var remoteStream = await response.Content.ReadAsStreamAsync(cancellationToken))
                     using (var fileStream = new FileStream(outputPath, FileMode.Create, FileAccess.Write, FileShare.None))
                     {
                         var totalBytes = response.Content.Headers.ContentLength.HasValue ? response.Content.Headers.ContentLength.Value : -1L;
@@ -30,7 +30,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
 
                         do
                         {
-                            var read = await remoteStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken);
+                            var read = await remoteStream.ReadAsync(buffer, cancellationToken);
                             if (read == 0)
                             {
                                 isMoreToRead = false;
@@ -51,9 +51,10 @@ namespace WPF_Haltestellen_MVVM_3Tiers
                 }
             }
         }
-        private string OpenSaveDialog(string filter, string title)
+
+        public string OpenSaveDialog(string filter, string title)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = filter;
             saveFileDialog.Title = title;
 

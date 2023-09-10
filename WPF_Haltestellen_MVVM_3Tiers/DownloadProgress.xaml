@@ -4,7 +4,7 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Name="fileNameText" Text="Downloading:" HorizontalAlignment="Center" Margin="0,0,0,10" />
-            <ProgressBar Name="downloadProgress" Height="20" Width="250" Margin="0,10,0,10" />
+            <ProgressBar Name="progressBar" Height="20" Width="250" Margin="0,10,0,10" />
             <TextBlock Name="percentageText" Text="0%" HorizontalAlignment="Center" Margin="0,10,0,10" />
             <Button Content="Cancel" Click="OnCancelButtonClick" Width="100" HorizontalAlignment="Center" />
         </StackPanel>

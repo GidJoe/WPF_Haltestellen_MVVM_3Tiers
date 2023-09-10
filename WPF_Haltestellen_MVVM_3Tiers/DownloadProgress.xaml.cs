@@ -1,10 +1,6 @@
-﻿using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System;
 using System.Threading;
 using System.Windows;
-using System;
-using Microsoft.Win32;
 
 namespace WPF_Haltestellen_MVVM_3Tiers;
 
@@ -14,7 +10,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers;
 public partial class DownloadProgress : Window
 {
     public Action OnCancelClicked { get; set; }
-    
+    public CancellationTokenSource CancellationTokenSource { get; } = new CancellationTokenSource();
 
     public DownloadProgress()
     {
@@ -23,7 +19,7 @@ public partial class DownloadProgress : Window
 
     public void UpdateProgress(double value)
     {
-        downloadProgress.Value = value;
+        progressBar.Value = value;
         percentageText.Text = $"{value:0.0}%";
     }
 
@@ -34,10 +30,7 @@ public partial class DownloadProgress : Window
 
     private void OnCancelButtonClick(object sender, RoutedEventArgs e)
     {
+        CancellationTokenSource.Cancel();
         OnCancelClicked?.Invoke();
     }
-
-    
-
-
 }

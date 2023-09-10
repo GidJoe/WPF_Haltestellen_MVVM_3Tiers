@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace WPF_Haltestellen_MVVM_3Tiers
 {
-    public class CSVHelper : ICSVHelper
+    public class CSVHelper
     {
         public ObservableCollection<Haltestellen> GetAllStations(string csvFilePath)
         {
