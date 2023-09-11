@@ -7,8 +7,8 @@
         public string IFOPT { get; set; }
         public string NAME { get; set; }
         public string Verkehr { get; set; }
-        public decimal Laenge { get; set; }
-        public decimal Breite { get; set; }
+        public string Laenge { get; set; }
+        public string Breite { get; set; }
         public string Betreiber_Name { get; set; }
         public string Betreiber_Nr { get; set; }
         public string Status { get; set; }

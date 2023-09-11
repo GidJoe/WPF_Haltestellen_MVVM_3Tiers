@@ -17,7 +17,7 @@
                 <MenuItem Header="Zeige Infos" Click="MenuItem_ClickOnInfo"/>
             </MenuItem>
         </Menu>
-        <ListView Name="lv" GridViewColumnHeader.Click="lv_clickOnHeader" ItemsSource="{Binding Haltestellen}" Margin="2,25,0,1">
+        <ListView Name="lv" GridViewColumnHeader.Click="lv_clickOnHeader" MouseDoubleClick="lv_MouseDoubleClick" ItemsSource="{Binding Haltestellen}" Margin="2,25,0,1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />

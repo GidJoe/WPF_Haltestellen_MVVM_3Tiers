@@ -140,4 +140,16 @@ public partial class View : Window
     }
     #endregion Button-Click-Events
 
+    private void lv_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        
+        var selectedItem = (Haltestellen)lv.SelectedItem;
+        if (selectedItem != null)
+        {
+           var detailsWindow = new DetailsWindow(selectedItem);
+            detailsWindow.ShowDialog();
+        }
+                
+        
+    }
 }
