@@ -105,8 +105,10 @@ public partial class View : Window
         // Ruft das neue Fenster auf
         downloadProgressWindow.Show();
 
+        
+        //var uri = new Uri("https://speed.hetzner.de/1GB.bin"); 1 GB Testdatei
+        var uri = new Uri("https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV");
         // Setzt den Dateinamen im Download-Fenster
-        var uri = new Uri("https://speed.hetzner.de/1GB.bin");
         downloadProgressWindow.SetFileName(System.IO.Path.GetFileName(uri.AbsolutePath));
 
         // Definiere einen Fortschrittsberichterstatter, der den Fortschritt an das Download-Fenster weitergibt
@@ -122,16 +124,15 @@ public partial class View : Window
                 downloadProgressWindow.CancellationTokenSource.Token
             );
 
-            MessageBox.Show("Download completed successfully!");
+            MessageBox.Show("Download erfolgreich abgeschlossen");
         }
         catch (TaskCanceledException)
         {
-            // Handle if the user canceled the download
-            MessageBox.Show("Download was canceled by the user.");
+            MessageBox.Show("Download wurde abgebrochen.");
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Download error: {ex.Message}");
+            MessageBox.Show($"Fehler beim Herunterladen: {ex.Message}");
         }
         finally
         {

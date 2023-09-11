@@ -30,7 +30,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
         public ViewModel(CSVHelper csvHelper) 
         {
             _csvHelper = csvHelper;
-            LoadData("C:\\Users\\MWB\\Source\\Repos\\GidJoe\\WPF_Haltestellen_MVVM_3Tiers\\WPF_Haltestellen_MVVM_3Tiers\\HaltestellenDB.csv");
+            LoadData("C:\\Users\\marc1\\source\\repos\\WPF_Haltestellen_MVVM_3Tiers\\WPF_Haltestellen_MVVM_3Tiers\\HaltestellenDB.csv");
         }
 
         public void LoadData(string csvFilePath)
