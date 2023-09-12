@@ -1,9 +1,8 @@
-﻿using System.Threading;
-using System.Windows;
+﻿using Microsoft.Win32;
 using System;
 using System.IO;
-using Microsoft.Win32;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WPF_Haltestellen_MVVM_3Tiers
@@ -12,7 +11,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
     {
         public static async Task DownloadAsync(string url, string outputPath, IProgress<double> progress, CancellationToken cancellationToken)
         {
-            const int bufferSize = 8192; 
+            const int bufferSize = 8192;
 
             using (var httpClient = new HttpClient())
             {

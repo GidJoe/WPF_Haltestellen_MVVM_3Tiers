@@ -8,23 +8,23 @@
         Title="Details" Height="622" Width="972">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Margin="5" />
         <wv2:WebView2 x:Name="WebView" Grid.Row="1" MinWidth="100" />
         <GridSplitter Grid.Row="1" Grid.Column="1" Background="Black" HorizontalAlignment="Stretch" Width="5" ShowsPreview="True" />
         <ScrollViewer Grid.Row="1" Grid.Column="2">
-            <StackPanel >
+            <StackPanel>
                 <Label Content="Haltestellen-Nr.:"  FontWeight="Bold" />
-                <Label x:Name="lbl_Nr"/>
+                <Label x:Name="lbl_Nr" />
                 <Label Content="Name der Haltestelle:"  FontWeight="Bold" />
-                <Label x:Name="lbl_NameVonHaltestelle"/>
+                <Label x:Name="lbl_NameVonHaltestelle" />
                 <Label Content="Längengrad" FontWeight="Bold" />
                 <Label x:Name="lbl_Laengengrad" />
                 <Label Content="Breitengrad" FontWeight="Bold" />

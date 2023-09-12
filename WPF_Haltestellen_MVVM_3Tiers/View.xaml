@@ -1,13 +1,12 @@
 ﻿<Window x:Class="WPF_Haltestellen_MVVM_3Tiers.View"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="Haltestellen List" Height="583" Width="1122">
 
     <Grid Margin="0,0,0,2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Menu VerticalAlignment="Top" Height="23">
             <MenuItem Header="Datei">
@@ -16,22 +15,22 @@
                 <MenuItem Header="Beenden" Click="MI_ClickOnBeenden" />
             </MenuItem>
             <MenuItem Header="Info">
-                <MenuItem Header="Zeige Infos" Click="MI_ClickOnInfo"/>
+                <MenuItem Header="Zeige Infos" Click="MI_ClickOnInfo" />
             </MenuItem>
         </Menu>
         <ListView Name="lv" GridViewColumnHeader.Click="lv_clickOnHeader" MouseDoubleClick="lv_MouseDoubleClick" ItemsSource="{Binding Haltestellen}" Margin="2,25,0,1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="EVA_NR" DisplayMemberBinding="{Binding EVA_NR}" Width="100"/>
-                    <GridViewColumn Header="DS100" DisplayMemberBinding="{Binding DS100}" Width="100"/>
-                    <GridViewColumn Header="IFOPT" DisplayMemberBinding="{Binding IFOPT}" Width="100"/>
-                    <GridViewColumn Header="NAME" DisplayMemberBinding="{Binding NAME}" Width="150"/>
-                    <GridViewColumn Header="Verkehr" DisplayMemberBinding="{Binding Verkehr}" Width="100"/>
-                    <GridViewColumn Header="Laenge" DisplayMemberBinding="{Binding Laenge}" Width="100"/>
-                    <GridViewColumn Header="Breite" DisplayMemberBinding="{Binding Breite}" Width="100"/>
-                    <GridViewColumn Header="Betreiber Name" DisplayMemberBinding="{Binding Betreiber_Name}" Width="150"/>
-                    <GridViewColumn Header="Betreiber Nr" DisplayMemberBinding="{Binding Betreiber_Nr}" Width="120"/>
-                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                    <GridViewColumn Header="EVA_NR" DisplayMemberBinding="{Binding EVA_NR}" Width="100" />
+                    <GridViewColumn Header="DS100" DisplayMemberBinding="{Binding DS100}" Width="100" />
+                    <GridViewColumn Header="IFOPT" DisplayMemberBinding="{Binding IFOPT}" Width="100" />
+                    <GridViewColumn Header="NAME" DisplayMemberBinding="{Binding NAME}" Width="150" />
+                    <GridViewColumn Header="Verkehr" DisplayMemberBinding="{Binding Verkehr}" Width="100" />
+                    <GridViewColumn Header="Laenge" DisplayMemberBinding="{Binding Laenge}" Width="100" />
+                    <GridViewColumn Header="Breite" DisplayMemberBinding="{Binding Breite}" Width="100" />
+                    <GridViewColumn Header="Betreiber Name" DisplayMemberBinding="{Binding Betreiber_Name}" Width="150" />
+                    <GridViewColumn Header="Betreiber Nr" DisplayMemberBinding="{Binding Betreiber_Nr}" Width="120" />
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100" />
                 </GridView>
             </ListView.View>
             <ListView.ItemsPanel>

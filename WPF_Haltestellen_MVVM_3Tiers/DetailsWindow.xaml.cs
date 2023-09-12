@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-
-
+﻿using System.Windows;
 
 namespace WPF_Haltestellen_MVVM_3Tiers
 {
@@ -24,11 +21,6 @@ namespace WPF_Haltestellen_MVVM_3Tiers
             var laenge = haltestelle.Laenge.Replace(',', '.');
             var breite = haltestelle.Breite.Replace(',', '.');
 
-            //Eingebettete Karten erzeugen. Siehe:
-            //https://www.maps.ie/create-google-map/
-            //https://www.mapsdirections.info/de/erstellen-sie-eine-google-map/
-
-            //Eingebettete Karte vorbereiten
             string HtmlCode = @$"
                <!DOCTYPE html>
                <html lang=""de"" xmlns=""http://www.w3.org/1999/xhtml"">
@@ -41,9 +33,7 @@ namespace WPF_Haltestellen_MVVM_3Tiers
                  </body>
                </html>";
 
-            //und im WebView2-Control anzeigen
             WebView.CoreWebView2.NavigateToString(HtmlCode);
-            
         }
 
         public void UpdateLbl(Haltestellen haltestelle)
@@ -51,7 +41,8 @@ namespace WPF_Haltestellen_MVVM_3Tiers
             if (haltestelle == null)
             {
                 return;
-            } else
+            }
+            else
             {
                 lbl_Nr.Content = haltestelle.EVA_NR;
                 lbl_NameVonHaltestelle.Content = haltestelle.NAME;

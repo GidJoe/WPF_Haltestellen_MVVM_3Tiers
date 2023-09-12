@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 
 namespace WPF_Haltestellen_MVVM_3Tiers;
 
@@ -15,7 +14,6 @@ public partial class View : Window
     private GridViewColumnHeader? _lastHeaderClicked = null;
     private ListSortDirection _lastDirection = ListSortDirection.Ascending;
     private ViewModel viewModel; // Declare a class-level variable to store the ViewModel instance.
-
 
     public View()
     {
@@ -38,7 +36,6 @@ public partial class View : Window
             await viewModel.SortData(headerName);
         }
     }
-
 
     #endregion Sortierungslogik
 
@@ -125,7 +122,6 @@ public partial class View : Window
             {
                 viewModel.StatusBarText = $"Fehler beim Herunterladen: {ex.Message}";
             }
-            
         }
         finally
         {
@@ -152,6 +148,4 @@ public partial class View : Window
     }
 
     #endregion Button-Click-Events
-
-
 }

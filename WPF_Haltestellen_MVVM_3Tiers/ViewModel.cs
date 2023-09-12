@@ -16,7 +16,9 @@ namespace WPF_Haltestellen_MVVM_3Tiers
         private string _statusBarText;
         private readonly CSVHelper _csvHelper;
         private ObservableCollection<Haltestellen> _haltestellen;
+
         public event PropertyChangedEventHandler? PropertyChanged;
+
         private ListSortDirection _lastDirection = ListSortDirection.Ascending;
 
         public ObservableCollection<Haltestellen> Haltestellen
@@ -96,12 +98,12 @@ namespace WPF_Haltestellen_MVVM_3Tiers
         {
             try
             {
-                // Toggle the sort direction.
+                // Wechsel die Sortierrichtung
                 _lastDirection = (_lastDirection == ListSortDirection.Ascending)
                     ? ListSortDirection.Descending
                     : ListSortDirection.Ascending;
 
-                // Update the status bar text to indicate sorting.
+                // Update die Statusbar, um anzuzeigen, dass sortiert wird.
                 StatusBarText = "Daten werden sortiert...";
 
                 await Task.Run(() =>
@@ -110,34 +112,34 @@ namespace WPF_Haltestellen_MVVM_3Tiers
 
                     if (_lastDirection == ListSortDirection.Ascending)
                     {
-                        // Sort in ascending order based on the selected header.
+                        // Sortiere die Haltestellen nach dem ausgewählten Header in aufsteigender Reihenfolge.
                         sortedHaltestellen = Haltestellen.OrderBy(item => GetPropertyValue(item, header)).ToList();
                     }
                     else
                     {
-                        // Sort in descending order based on the selected header.
+                        // Sortiere die Haltestellen nach dem ausgewählten Header in absteigender Reihenfolge.
                         sortedHaltestellen = Haltestellen.OrderByDescending(item => GetPropertyValue(item, header)).ToList();
                     }
 
-                    // Update the UI on the UI thread.
+                    // Update die UI auf dem UI-Thread.
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        // Clear existing sort descriptions.
+                        // Entferne alle Sortierungen, die bereits vorhanden sind.
                         var dataView = CollectionViewSource.GetDefaultView(Haltestellen);
                         dataView.SortDescriptions.Clear();
 
-                        // Set the new sort description.
+                        // Setze die neue Sortierung.
                         SortDescription sd = new SortDescription(header, _lastDirection);
                         dataView.SortDescriptions.Add(sd);
 
-                        // Update the ObservableCollection with the sorted list.
+                        // Update die ObservableCollection mit der sortierten Liste.
                         Haltestellen.Clear();
                         foreach (var item in sortedHaltestellen)
                         {
                             Haltestellen.Add(item);
                         }
 
-                        // Clear the status bar text.
+                        // Update die Statusbar, um anzuzeigen, dass sortiert wurde.
                         StatusBarText = $"{Haltestellen.Count} Haltestellen geladen.";
                     });
                 });
@@ -149,12 +151,11 @@ namespace WPF_Haltestellen_MVVM_3Tiers
             }
         }
 
-
-
-
         private object GetPropertyValue(Haltestellen item, string propertyName)
         {
-            // Use reflection to get the property value based on the property name (header).
+            // Helfermethode zum Abrufen des Header Values
+            // aus dem Haltestellen-Objekt.
+
             var propertyInfo = typeof(Haltestellen).GetProperty(propertyName);
             if (propertyInfo != null)
             {
@@ -162,10 +163,8 @@ namespace WPF_Haltestellen_MVVM_3Tiers
             }
             else
             {
-                return null; // Handle unsupported headers or return null.
+                return null;
             }
         }
-
-
     }
 }

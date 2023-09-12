@@ -13,5 +13,4 @@
         public string Betreiber_Nr { get; set; }
         public string Status { get; set; }
     }
-
 }
