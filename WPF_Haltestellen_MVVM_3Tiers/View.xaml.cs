@@ -11,17 +11,15 @@ namespace WPF_Haltestellen_MVVM_3Tiers;
 /// </summary>
 public partial class View : Window
 {
-    private GridViewColumnHeader? _lastHeaderClicked = null;
-    private ListSortDirection _lastDirection = ListSortDirection.Ascending;
-    private ViewModel viewModel; // Declare a class-level variable to store the ViewModel instance.
+    private ViewModel viewModel;
 
     public View()
     {
         InitializeComponent();
 
-        viewModel = new ViewModel(new CSVHelper()); // Initialize the ViewModel and store it.
+        viewModel = new ViewModel(new CSVHelper());
 
-        DataContext = viewModel; // Set the DataContext to the ViewModel instance.
+        DataContext = viewModel;
     }
 
     #region Sortierungslogik
@@ -31,8 +29,6 @@ public partial class View : Window
         if (e.OriginalSource is GridViewColumnHeader headerClicked)
         {
             string headerName = (string)headerClicked.Column.Header;
-
-            // Call the SortData method asynchronously.
             await viewModel.SortData(headerName);
         }
     }
