@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WPF_Haltestellen_MVVM_3Tiers.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CSVPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"HaltestellenDB.csv"</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

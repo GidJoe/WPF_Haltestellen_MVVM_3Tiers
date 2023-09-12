@@ -14,64 +14,48 @@ public partial class View : Window
 {
     private GridViewColumnHeader? _lastHeaderClicked = null;
     private ListSortDirection _lastDirection = ListSortDirection.Ascending;
-    
+    private ViewModel viewModel; // Declare a class-level variable to store the ViewModel instance.
+
+
     public View()
     {
         InitializeComponent();
-        
-        DataContext = new ViewModel(new CSVHelper());
+
+        viewModel = new ViewModel(new CSVHelper()); // Initialize the ViewModel and store it.
+
+        DataContext = viewModel; // Set the DataContext to the ViewModel instance.
     }
 
     #region Sortierungslogik
 
-    private void lv_clickOnHeader(object sender, RoutedEventArgs e)
+    private async void lv_clickOnHeader(object sender, RoutedEventArgs e)
     {
-        ListSortDirection direction;
-
         if (e.OriginalSource is GridViewColumnHeader headerClicked)
         {
-            if (headerClicked != _lastHeaderClicked)
-            {
-                direction = ListSortDirection.Ascending;
-            }
-            else
-            {
-                direction = _lastDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
-            }
+            string headerName = (string)headerClicked.Column.Header;
 
-            string header = (string)headerClicked.Column.Header;
-            Sorting(header, direction);
-
-            _lastHeaderClicked = headerClicked;
-            _lastDirection = direction;
+            // Call the SortData method asynchronously.
+            await viewModel.SortData(headerName);
         }
     }
 
-    private void Sorting(string sortBy, ListSortDirection direction)
-    {
-        ICollectionView dataView = CollectionViewSource.GetDefaultView(lv.ItemsSource);
-
-        dataView.SortDescriptions.Clear();
-        SortDescription sd = new(sortBy, direction);
-        dataView.SortDescriptions.Add(sd);
-        dataView.Refresh();
-    }
 
     #endregion Sortierungslogik
 
     #region Button-Click-Events
 
-    private void MenuItem_ClickOnExit(object sender, RoutedEventArgs e)
+    private void MI_ClickOnBeenden(object sender, RoutedEventArgs e)
     {
         Application.Current.Shutdown();
     }
-    private void MenuItem_ClickOnInfo(object sender, RoutedEventArgs e)
+
+    private void MI_ClickOnInfo(object sender, RoutedEventArgs e)
     {
         var infoWindow = new InfoWindow();
         infoWindow.ShowDialog();
     }
 
-    private async void MenuItem_ClickOnDLNewCSV(object sender, RoutedEventArgs e)
+    private async void MI_DownloadCSV(object sender, RoutedEventArgs e)
     {
         // Instanziierung eines Objektes aus der Klasse 'DownloadHelper.cs'
         var downloadHelper = new DownloadHelper();
@@ -105,7 +89,6 @@ public partial class View : Window
         // Ruft das neue Fenster auf
         downloadProgressWindow.Show();
 
-        
         //var uri = new Uri("https://speed.hetzner.de/1GB.bin"); 1 GB Testdatei
         var uri = new Uri("https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV");
         // Setzt den Dateinamen im Download-Fenster
@@ -124,33 +107,51 @@ public partial class View : Window
                 downloadProgressWindow.CancellationTokenSource.Token
             );
 
-            MessageBox.Show("Download erfolgreich abgeschlossen");
+            if (this.DataContext is ViewModel viewModel)
+            {
+                viewModel.StatusBarText = "Download erfolgreich.";
+            }
         }
         catch (TaskCanceledException)
         {
-            MessageBox.Show("Download wurde abgebrochen.");
+            if (this.DataContext is ViewModel viewModel)
+            {
+                viewModel.StatusBarText = "Download abgebrochen.";
+            }
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Fehler beim Herunterladen: {ex.Message}");
+            if (this.DataContext is ViewModel viewModel)
+            {
+                viewModel.StatusBarText = $"Fehler beim Herunterladen: {ex.Message}";
+            }
+            
         }
         finally
         {
             downloadProgressWindow.Close();
         }
     }
-    #endregion Button-Click-Events
 
     private void lv_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        
         var selectedItem = (Haltestellen)lv.SelectedItem;
         if (selectedItem != null)
         {
-           var detailsWindow = new DetailsWindow(selectedItem);
+            var detailsWindow = new DetailsWindow(selectedItem);
             detailsWindow.ShowDialog();
         }
-                
-        
     }
+
+    private async void MI_LoadCSV(object sender, RoutedEventArgs e)
+    {
+        if (this.DataContext is ViewModel viewModel)
+        {
+            await viewModel.LoadDataFromUserSelection();
+        }
+    }
+
+    #endregion Button-Click-Events
+
+
 }
